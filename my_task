@@ -2,3 +2,4 @@
 # tasks
 1.对zxing中的core部分进行打包,生成jar放在libs下作为库进行调用
 2.修改zxing中android部分代码
+3.阅读helps/integrate_zxing.txt中的帮助内容
