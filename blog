@@ -1,0 +1,6 @@
+# 2012-03-06
+今天尝试使用http://blog.csdn.net/hellogv/article/details/6101663#comments这篇文章进行了测试
+git分支名为demo_1
+发现的问题:
+1.wakelock似乎没有取得,导致机器会自动休眠
+2.对二维码和条形码的支持都不是很理想

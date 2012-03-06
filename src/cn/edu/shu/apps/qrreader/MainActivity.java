@@ -66,6 +66,7 @@ public class MainActivity extends Activity {
             sfhCamera.AutoFocusAndPreviewCallback();  
         }  
     }  
+    
     /** 
      *  自动对焦后输出图片 
      */  
