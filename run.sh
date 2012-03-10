@@ -7,4 +7,7 @@ case $1 in
         rm bin/*;
         ant debug install;
         ;;
+    apk)
+        adb install -r -s bin/QrReader-debug.apk
+        ;;
 esac

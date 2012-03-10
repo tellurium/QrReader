@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">Qr Reader</string>
+    
+    <!-- Strings for CameraPreivew -->
+    <string name="can_not_open_camera">摄像头不可用</string>
 </resources>

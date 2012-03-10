@@ -1,18 +1,24 @@
 # 当前任务
-1.20120306task001
-2.20120309task001
+1.20120310task
+
+# 2012-03-10
+# 1.废弃任务20120306task001
+# 2.解决20120309task
+# 3.解决20120310task002
+1.添加并完善Utils.java
+2.使用摄像头完成取景            # (solved)
 
 # 2012-03-09
-1.添加并完善CameraUtils.java
-2.添加并完善CameraPreview.java 
-3.添加并完善文件IO类FileIO.java
+1.添加并完善CameraUtils.java    # (solved)
+2.添加并完善CameraPreview.java  # (solved)
+3.添加并完善文件IO类FileIO.java # (solved)
 
 # 2012-03-08
 # 1.对AndroidManifest.xml文件添加了大量可能需要的uses-permission和uses-feature
 
 # 2012-03-06
 # 1.废弃任务20120303task002
-1.使用FrameLayout显示摄像头捕获的图像
+1.使用FrameLayout显示摄像头捕获的图像 # (deprecated, 使用xml布局不如继承View类来的灵活)
 
 # 2012-03-05
 # 1.解决20120303task003
