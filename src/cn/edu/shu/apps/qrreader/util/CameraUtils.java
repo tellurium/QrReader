@@ -14,4 +14,25 @@ public class CameraUtils {
             return false;
         }
     }
+
+    /**
+     * Get front-facing camera
+     */
+    public static Camera getFrontCameraInstance() {
+        
+    }
+
+    /**
+     * Get back-faceing camera
+     */
+    public static Camera getBackCameraInstance() {
+        
+    }
+
+    /**
+     * Get camera instance common method
+     */
+    public static Camera getCameraInstnce() {
+
+    }
 }

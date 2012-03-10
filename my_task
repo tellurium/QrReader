@@ -1,5 +1,11 @@
 # 当前任务
 1.20120306task001
+2.20120309task001
+
+# 2012-03-09
+1.添加并完善CameraUtils.java
+2.添加并完善CameraPreview.java 
+3.添加并完善文件IO类FileIO.java
 
 # 2012-03-08
 # 1.对AndroidManifest.xml文件添加了大量可能需要的uses-permission和uses-feature

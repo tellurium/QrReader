@@ -1,3 +1,15 @@
+# 2012-03-09
+1.CameraUtils.java需要提供的功能:
+-查看设备是否具备了摄像头
+-选择前摄像头或后摄像头的功能
+-获取Camera类的对象实例
+# 默认状态中,当设备有多个摄像头时,通过Camera.open()方法获得的摄像头获得的是第一个后摄像头
+# Android中使用SurfaceView类来保存摄像头获得的图像,使用SufaceView和SurfaceHolder需要主义线程同步
+2.CameraPreview.java的主要功能:
+-主要负责摄像头的取景功能
+-预计封装或者继承于SurfaceView,访问并操作SurfaceHolder
+3.FileIO.java主要关注的问题在于Android系统中对文件流的操作,包括文件的读取和写入
+
 # 2012-03-08
 1.Android中自定义一个摄像头应用的步骤:
 -检测并访问摄像头
