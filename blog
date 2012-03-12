@@ -8,6 +8,8 @@ zxing 的文档十分全面,以下内容来自对文档http://code.google.com/p/
  java -cp javase/javase.jar:core/core.jar com.google.zxing.client.j2se.CommandLineRunner [URL | FILE]
  (Windows用户需要将':'替换为';')
  来获得对某一个图片的解析(以上命令只支持条形码)
+2.使用zxing最快,最偷懒的方法:直接下载/android移植版本,修改CaptureActivity.java即可(显然基本上有点邪恶呀!感觉就像
+ 在抄作业好伐,不过如果项目催的紧的话,就不要怪我用这招啦...)
 
 # 2012-03-10
 1.完成调用摄像头并显示实时图像的功能,真机测试调用成功
@@ -40,4 +42,4 @@ zxing 的文档十分全面,以下内容来自对文档http://code.google.com/p/
 git分支名为demo_1
 发现的问题:
 1.wakelock似乎没有取得,导致机器会自动休眠
-2.对二维码和条形码的支持都不是很理想
+2.对二维码和条形码的支持都不是很理想(没有成功过,T_T!)
