@@ -1,3 +1,14 @@
+# 2012-03-12
+1.zxing库源代码的使用方法:
+zxing 的文档十分全面,以下内容来自对文档http://code.google.com/p/zxing/wiki/GettingStarted的理解
+-zxing使用ant作为整个程序的编译打包工具,源代码中的build.xml文件已经定义了若干实用的功能(task)
+-zxing库使用的核心为源代码中的core文件夹,而javase文件夹中的程序是可以在pc上运行的
+ 运行方法:
+ 在先后编译core和javase后,使用命令:
+ java -cp javase/javase.jar:core/core.jar com.google.zxing.client.j2se.CommandLineRunner [URL | FILE]
+ (Windows用户需要将':'替换为';')
+ 来获得对某一个图片的解析(以上命令只支持条形码)
+
 # 2012-03-10
 1.完成调用摄像头并显示实时图像的功能,真机测试调用成功
 2.界面采用代码动态实现,而不是使用静态的xml文件,实时性更好
