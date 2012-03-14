@@ -1,5 +1,8 @@
 #! /bin/sh
 case $1 in
+    image)
+        adb shell am start -n cn.edu.shu.apps.qrreader/.ImageDecoderActivity
+        ;;
     main)
         adb shell am start -n cn.edu.shu.apps.qrreader/.MainActivity
         ;;

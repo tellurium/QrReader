@@ -44,14 +44,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             parameters.setPictureSize(320, 960);
             mCamera.setParameters(parameters);
             mCamera.setPreviewDisplay(mHolder);
-
-            //-----For test
-            if (mHolder == holder) {
-               ToastUtils.showShortToast(mContext, "mHolder equals holder");     
-            } else {
-               ToastUtils.showShortToast(mContext, "mHolder does not equal holder");     
-
-            }
         } catch(IOException e) {
             mCamera.release();
             mCamera = null;

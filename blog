@@ -1,3 +1,7 @@
+# 2012-03-13
+1.原来zxing的接口是如此易于调用,直接调用zxing核心,解析纯图片的过程简单明了请查看ImageDecoderActivity.java
+文件
+
 # 2012-03-12
 1.zxing库源代码的使用方法:
 zxing 的文档十分全面,以下内容来自对文档http://code.google.com/p/zxing/wiki/GettingStarted的理解
