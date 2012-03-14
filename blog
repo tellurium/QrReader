@@ -1,3 +1,27 @@
+# 2012-03-14
+1.关于核心库对外提供的接口
+接口:
+-Reader:用来对一张含有条码的图片进行解码,并从中获取编码在图像中的字符串
+-Writer:用来生成一张条码图片
+-ResultPointCallback:当一个可能的结果点被发现的时侯调用的回调方法(?)
+类:
+-Binarizer:提供了一系列将亮度数据转换为1位数据的方法
+-BinaryBitmap:ZXing用来代表1位数据的核心类
+-HtmlAssetTranslator:一个能使用Google Translate把一个目录下的html文档中的英语自动翻译的实用类
+-LuminanceSource:该类的目的在于将不同平台的位图实现抽象成一个标准接口来请求灰度的亮度值
+-MultiFormatReader:使用核心库的主要入口
+-MultiFormatWriter:对请求的条码格式寻找合适的Writer子类的工厂类,能够将提供的内容编码成某一种条码
+-Result:封装了从图像中解码出来的条码信息的类
+-ResultPoint:(暂时无法理解,a point of interest in an image containing a barcode,所谓的点究竟是什么?)
+-StringsResourceTranslator:又一个用Google Translate自动把Android中字符串资源翻译成其他语言的实用类
+枚举:
+-BarcodeFormat:枚举了所有已知(支持?)的条码格式
+-DecodeHintType:封装了一些hint类型,调用者可以传递这些hint,来使得reader解码更快更准确
+-EncodeHintType:一个hint集,可以传递给writer以控制Writer的行为
+-ResultMetadataType:代表了解码器想要反馈给调用者的解码结果的元信息(难以理解和翻译啊!)
+异常:
+一系列ZXing自行定义的异常
+
 # 2012-03-13
 1.原来zxing的接口是如此易于调用,直接调用zxing核心,解析纯图片的过程简单明了请查看ImageDecoderActivity.java
 文件
