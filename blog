@@ -20,7 +20,7 @@
 -EncodeHintType:一个hint集,可以传递给writer以控制Writer的行为
 -ResultMetadataType:代表了解码器想要反馈给调用者的解码结果的元信息(难以理解和翻译啊!)
 异常:
-一系列ZXing自行定义的异常
+-一系列ZXing自行定义的异常
 
 # 2012-03-13
 1.原来zxing的接口是如此易于调用,直接调用zxing核心,解析纯图片的过程简单明了请查看ImageDecoderActivity.java
