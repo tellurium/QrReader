@@ -1,12 +1,15 @@
 # 当前任务
-1.20120312task
+
+# 2012-03-16
+# 1.添加MultiFormatOneDAndQrCodeReader.java文件,由MultiFormatReader修改而来,删除了不需要进行识别的
+# 条码reader
 
 # 2012-03-13
 1.提供一张纯粹的Qr_code或者条形码,解析并尝试获得数据 # (solved)
 
 # 2012-03-12
-1.目前需要理解core所作的工作,输入是什么,输出是什么,分别对应的类是什么.
-2.而android版本又是如何利用core来实现各项功能的
+1.目前需要理解core所作的工作,输入是什么,输出是什么,分别对应的类是什么. # (deprecated,任务太过笼统)
+2.而android版本又是如何利用core来实现各项功能的                        # (deprecated,同上)
 
 # 2012-03-10
 # 1.废弃任务20120306task001

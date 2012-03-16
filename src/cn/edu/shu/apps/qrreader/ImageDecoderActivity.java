@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
+import com.google.zxing.MultiFormatOneDAndQrCodeReader;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.client.androidtest.RGBLuminanceSource; 
@@ -24,7 +24,7 @@ public class ImageDecoderActivity extends Activity {
             Bitmap bitmap = BitmapFactory.decodeStream(this.getAssets().open("qrcode-phone-icon.png"));
             LuminanceSource source = new RGBLuminanceSource(bitmap);
             BinaryBitmap bb = new BinaryBitmap(new HybridBinarizer(source));
-            Reader reader = new MultiFormatReader();
+            Reader reader = new MultiFormatOneDAndQrCodeReader();
             Result result = reader.decode(bb);
 
             final TextView tv = new TextView(this);

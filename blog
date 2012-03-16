@@ -1,3 +1,16 @@
+# 2012-03-16
+1.目前可以方便地对静态的图片进行解码,下一步需要在使用摄像头不断取景的情况下,对图片进行解码
+2.ZXing进行解码的基本流程:
+-首先需要获取图片,各个平台表示图片的类各不相同
+-将图片转换成LuminanceSource类型
+-再将LuminanceSource对象转换成ZXing内部使用的BinaryBitmap类型
+-然后选取合适的Reader进行解码(调用decode方法)
+-通过Result对象可以获得我们需要的String类型的数据
+
+# 2012-03-15
+1.二维码各种格式与样例,可以参考wiki:http://zh.wikipedia.org/wiki/%E4%BA%8C%E7%B6%AD%E6%A2%9D%E7%A2%BC
+2.核心Reader:QRCodeReader,MultiFormatOneDReader(我们的应用可能需要的)
+
 # 2012-03-14
 1.关于核心库对外提供的接口
 接口:
@@ -5,7 +18,7 @@
 -Writer:用来生成一张条码图片
 -ResultPointCallback:当一个可能的结果点被发现的时侯调用的回调方法(?)
 类:
--Binarizer:提供了一系列将亮度数据转换为1位数据的方法
+-Binarizer:提供了一系列将亮度数据转换为1位数据的方法,需要一个LuminanceSource实例作为构造参数
 -BinaryBitmap:ZXing用来代表1位数据的核心类
 -HtmlAssetTranslator:一个能使用Google Translate把一个目录下的html文档中的英语自动翻译的实用类
 -LuminanceSource:该类的目的在于将不同平台的位图实现抽象成一个标准接口来请求灰度的亮度值
