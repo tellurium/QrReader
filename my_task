@@ -3,6 +3,7 @@
 # 2012-03-16
 # 1.添加MultiFormatOneDAndQrCodeReader.java文件,由MultiFormatReader修改而来,删除了不需要进行识别的
 # 条码reader
+1.查看android/和javase/版本对动态图像识别时采用的算法
 
 # 2012-03-13
 1.提供一张纯粹的Qr_code或者条形码,解析并尝试获得数据 # (solved)
