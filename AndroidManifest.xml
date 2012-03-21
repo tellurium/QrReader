@@ -20,7 +20,9 @@
     <uses-feature android:name="android.hardware.wifi" required="false" />
     <uses-feature android:name="android.hardware.touchscreen" required="false" />
 
-    <application android:label="@string/app_name" >
+    <application android:label="@string/app_name" 
+        android:theme="@style/QrReaderTheme"
+        > 
         <activity android:name=".MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -31,6 +33,10 @@
 
         <activity android:name=".ImageDecoderActivity"
                   android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 </manifest> 

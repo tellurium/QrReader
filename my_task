@@ -1,5 +1,9 @@
 # 当前任务
 
+# 2012-03-20
+1.设计摄像头取景界面,可适当延后
+2.打开摄像头,取景(每个若干秒获取一次图片,把图片传输给Reader来处理,获取数据并显示)
+
 # 2012-03-16
 # 1.添加MultiFormatOneDAndQrCodeReader.java文件,由MultiFormatReader修改而来,删除了不需要进行识别的
 # 条码reader

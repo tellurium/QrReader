@@ -20,18 +20,26 @@ public class ImageDecoderActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final TextView tv = new TextView(this);
+        tv.setText("Ok.Image 1: " + decodeImage("qrcode-phone-icon.png") +
+                ", image 2: " + decodeImage("test2.jpeg") + 
+                ", image 3: " + decodeImage("test3.jpg"));
+
+        setContentView(tv);
+    }
+
+    public String decodeImage(String filename) {
         try {
-            Bitmap bitmap = BitmapFactory.decodeStream(this.getAssets().open("qrcode-phone-icon.png"));
+            Bitmap bitmap = BitmapFactory.decodeStream(this.getAssets().open(filename));
             LuminanceSource source = new RGBLuminanceSource(bitmap);
             BinaryBitmap bb = new BinaryBitmap(new HybridBinarizer(source));
             Reader reader = new MultiFormatOneDAndQrCodeReader();
             Result result = reader.decode(bb);
 
-            final TextView tv = new TextView(this);
-            tv.setText(result.getText());
-            setContentView(tv);
+            return result.getText();
         } catch(Exception e) {
             // ....
         }
+        return null;
     }
 }
