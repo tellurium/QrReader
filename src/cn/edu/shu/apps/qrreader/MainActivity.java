@@ -1,6 +1,5 @@
 package cn.edu.shu.apps.qrreader;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
@@ -10,9 +9,10 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import cn.edu.shu.aps.qrreader.BaseActivity;
 import cn.edu.shu.aps.qrreader.camera.CameraPreview;
 
-public class MainActivity extends Activity implements Camera.PictureCallback {
+public class MainActivity extends BaseActivity implements Camera.PictureCallback {
     private CameraPreview mCameraPreview;
     private Bitmap mBitmap;
     
@@ -37,6 +37,7 @@ public class MainActivity extends Activity implements Camera.PictureCallback {
 
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
+        android.util.Log.d("MainActivity:onPictureTaken()", " -----> Picture has been taken");
         return ;
     }
 }

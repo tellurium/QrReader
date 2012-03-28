@@ -9,4 +9,5 @@ public class CaptureView extends View {
         super(context);
     }
 
+    
 }

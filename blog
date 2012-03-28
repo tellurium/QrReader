@@ -1,3 +1,15 @@
+# 2012-03-27
+1.根据UI设计视图,总结的程序流程如下:
+-首先,启动程序,开启取景界面(第一界面),摄像头不断获取图片,传输给ZXing核心进行解析,
+一旦解析成功,转到第二界面
+-第二界面显示捕获到的可以解析的图片信息和对该图片进行修改的按钮等视图元素
+2.各个界面和他对应的类文件
+-第一界面,MainActivity.java,需要按照官方文档的Building Camera App和training/camera/index.html设计代码
+-第二界面,OperatingActivity.java
+
+# 2012-03-25
+1.关于android 中摄像头的使用可以参:http://p2p.wrox.com/book-professional-android-application-development-isbn-978-0-470-34471-2/72528-article-using-android-camera.html
+
 # 2012-03-20
 1.添加了themes.xml和styles.xml,为设计用户界面做准备
 这两个文件的功能在于可以在styles.xml中设计一些基础界面元素的风格,
