@@ -9,8 +9,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import cn.edu.shu.aps.qrreader.BaseActivity;
-import cn.edu.shu.aps.qrreader.camera.CameraPreview;
+import cn.edu.shu.apps.qrreader.base.BaseActivity;
+import cn.edu.shu.apps.qrreader.view.CameraPreview;
 
 public class MainActivity extends BaseActivity implements Camera.PictureCallback {
     private CameraPreview mCameraPreview;
