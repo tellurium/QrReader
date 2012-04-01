@@ -1,19 +1,11 @@
 package cn.edu.shu.apps.qrreader.camera;
 
 import android.hardware.Camera;
-import android.hardware.Camera.Size;
-import android.util.Log;
 import android.view.SurfaceHolder;
-
-import java.util.List;
-
-import cn.edu.shu.apps.qrreader.view.CameraPreview;
 
 public class CameraHandler {
     private Camera mCamera;
     private CameraHandler.Callback mCallback;
-    private CameraPreview mPreview;
-    private List<Size> mSupportedPreviewSize;
 
     /**
      * Set a callback to respond some events
@@ -25,20 +17,12 @@ public class CameraHandler {
         public SurfaceHolder getSurfaceHolder();
     }
 
-    public CameraHandler(CameraHandler.Callback callback, CameraPreview preview) {
+    public CameraHandler(CameraHandler.Callback callback) {
         mCallback = callback;
-        mPreview = preview;
     }
 
-    public void setCamera(Camera camera) {
-        if (mCamera == camera) return ;
-
-        stopPreviewAndFreeCamera();
-
-        mCamera = camera;
-
+    public void startCamera() {
         if (mCamera != null) {
-            mSupportedPreviewSize = mCamera.getParameters().getSupportedPreviewSizes();
             mCallback.requestPreviewLayout();
 
             try {
@@ -52,7 +36,7 @@ public class CameraHandler {
         }
     }
 
-    public boolean safeCameraOpen(int id) {
+    public boolean safeCameraOpen() {
         boolean qOpened = false;
 
         try {
@@ -71,6 +55,7 @@ public class CameraHandler {
         if (mCamera != null) {
             mCamera.stopPreview();
             mCamera.release();
+            mCamera = null;
         }
     }
 
