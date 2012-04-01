@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ImageDecoderActivity"
+        <activity android:name=".OperatingActivity"
                   android:label="@string/app_name">
         </activity>
     </application>

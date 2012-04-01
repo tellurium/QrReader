@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Message ids -->
+    <item type="id" name="success" />
+    <item type="id" name="fail" />
+</resources>
