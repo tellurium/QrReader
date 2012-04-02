@@ -1,4 +1,4 @@
-package cn.edu.shu.aps.qrreader.util;
+package cn.edu.shu.apps.qrreader.util;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

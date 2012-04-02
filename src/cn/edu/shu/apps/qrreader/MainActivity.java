@@ -46,11 +46,9 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
 
-        FrameLayout fl = new FrameLayout(this);
-        mSurfaceView = new SurfaceView(this);
-        fl.addView(mSurfaceView);
-
-        setContentView(fl);
+        setContentView(R.layout.capture_layout);
+        
+        mSurfaceView = (SurfaceView) findViewById(R.id.main_surface_view);
 
         mCameraHandler = new CameraHandler(this);
         mHander = new Handler(this);
@@ -87,6 +85,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         switch (message.what) {
             case R.id.success:
                 logD("Get success message");
+                startActivity(OperatingActivity.class);
                 break;
             default:
                 break;
