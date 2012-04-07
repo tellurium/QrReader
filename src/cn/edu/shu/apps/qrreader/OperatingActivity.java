@@ -1,5 +1,6 @@
 package cn.edu.shu.apps.qrreader;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -13,9 +14,15 @@ public class OperatingActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        TextView textView = new TextView(this);
-        textView.setText("Hello");
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        mBitmap = (Bitmap) b.getParcelable("result_bitmap");
 
+        android.widget.ImageView imageView = new android.widget.ImageView(this);
+        imageView.setImageBitmap(mBitmap);
+
+        TextView textView = new TextView(this);
+        textView.setText(b.getString("result_string"));
         setContentView(textView);
     }
 }

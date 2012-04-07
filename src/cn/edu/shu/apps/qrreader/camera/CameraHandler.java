@@ -24,7 +24,7 @@ public class CameraHandler {
         mCallback = callback;
     }
 
-    public void callPreiviewFrame(Camera.PreviewCallback previewCallback) {
+    public void callPreviewFrame(Camera.PreviewCallback previewCallback) {
         if (isPreviewing) mCamera.setOneShotPreviewCallback(previewCallback);
     }
 
@@ -50,6 +50,7 @@ public class CameraHandler {
         try {
             releaseCameraAndPreview();
             mCamera = Camera.open();
+            configureCamera(mCamera);
             qOpened = (mCamera != null);
         } catch(Exception e) {
             if (mCallback != null) mCallback.onFailToOpenCamera();
@@ -57,6 +58,13 @@ public class CameraHandler {
         }
 
         return qOpened;
+    }
+
+    public void configureCamera(Camera camera) {
+        Camera.Parameters parameters = camera.getParameters();    
+        parameters.setPreviewSize(480, 320);//设置尺寸    
+        parameters.setPictureFormat(android.graphics.PixelFormat.JPEG);  
+        camera.setParameters(parameters); 
     }
 
     public void stopPreviewAndFreeCamera() {

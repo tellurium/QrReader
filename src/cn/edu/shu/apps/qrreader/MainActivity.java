@@ -1,5 +1,6 @@
 package cn.edu.shu.apps.qrreader;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -23,6 +24,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     private CameraHandler mCameraHandler;
     private Handler mHander;
 
+    private String mResult;
     /**
      * Decode runnable
      */
@@ -30,8 +32,8 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         @Override
         public void run() {
             logD("inside the runnable....");
-            mCameraHandler.callPreiviewFrame(MainActivity.this);
-            mHander.postDelayed(this, 1500);
+            mCameraHandler.callPreviewFrame(MainActivity.this);
+            mHander.postDelayed(this, 500);
         }
     };
     
@@ -85,7 +87,12 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         switch (message.what) {
             case R.id.success:
                 logD("Get success message");
-                startActivity(OperatingActivity.class);
+                Intent i = new Intent(this, OperatingActivity.class);
+                Bundle b = new Bundle();
+                b.putParcelable("result_bitmap", (Bitmap)message.obj);
+                b.putString("result_string", mResult);
+                i.putExtras(b);
+                startActivity(i);
                 break;
             default:
                 break;
@@ -130,9 +137,11 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
         logD("-----onPreviewFrame-----");
-        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        String result = Utils.decodePreviewData(bitmap);
+
+        Bitmap bitmap = null;
+        String result = Utils.decodePreviewData(data, bitmap);
         if (result == null) return ;
+        mResult = result;
         Message message = Message.obtain(mHander, R.id.success, bitmap);
         mHander.sendMessage(message);
     }
