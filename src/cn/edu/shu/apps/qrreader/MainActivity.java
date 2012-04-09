@@ -1,6 +1,7 @@
 package cn.edu.shu.apps.qrreader;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -22,7 +23,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
        SurfaceHolder.Callback, Camera.PreviewCallback, Handler.Callback {
     private SurfaceView mSurfaceView;
     private CameraHandler mCameraHandler;
-    private Handler mHander;
+    private Handler mHandler;
 
     private String mResult;
     /**
@@ -33,7 +34,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         public void run() {
             logD("inside the runnable....");
             mCameraHandler.callPreviewFrame(MainActivity.this);
-            mHander.postDelayed(this, 500);
+            mHandler.postDelayed(this, 500);
         }
     };
     
@@ -53,7 +54,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         mSurfaceView = (SurfaceView) findViewById(R.id.main_surface_view);
 
         mCameraHandler = new CameraHandler(this);
-        mHander = new Handler(this);
+        mHandler = new Handler(this);
 
         logD("onCreate ...");
     }
@@ -77,6 +78,15 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         mCameraHandler.stopPreviewAndFreeCamera();
         stopDecodePreview();
         super.onPause();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // when configuration changed, we do nothing, avoid to restart and relayout this activity
+        logD("inside configchanged");
+        logD("new Configuration is " + newConfig.toString());
+        return ;
     }
 
     /**
@@ -142,8 +152,8 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         String result = Utils.decodePreviewData(data, bitmap);
         if (result == null) return ;
         mResult = result;
-        Message message = Message.obtain(mHander, R.id.success, bitmap);
-        mHander.sendMessage(message);
+        Message message = Message.obtain(mHandler, R.id.success, bitmap);
+        mHandler.sendMessage(message);
     }
 
     /**
@@ -173,11 +183,11 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
      */
     private void startDecodePreview() {
         logD("start Decode preview");
-        mHander.post(mRunnable);
+        mHandler.post(mRunnable);
     }
 
     private void stopDecodePreview() {
         logD("stop Decode preview");
-        mHander.removeCallbacks(mRunnable);
+        mHandler.removeCallbacks(mRunnable);
     }
 }

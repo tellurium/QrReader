@@ -13,7 +13,7 @@ public class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // set landscape orientation
-        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     public void startActivity(Class nextActivity) {

@@ -1,10 +1,13 @@
+# 2012-04-09
+1.尝试使用对二维码进行解码,解码成功,不过机器突然死机(jiong)....
+2.问题在于获取到可以进行解码的Bitmap是出现错误
+
 # 2012-04-07
 1.onPreviewFrame(byte[] data, Camera camera); 返回的图片格式是YUV的,
 利用BitmapFactory.decodeByteArray()获取图片会报(--- SkImageDecoder::Factory returned null)的错误
 2.真机测试结果如下(主要为条形码,由于机器问题并没有测试二维码):
 1.识别成功,识别效率感觉一般
 2.需要摄像头对得较为准,有清晰的显示才会有更好的识别
-
 
 # 2012-04-02
 1.发出提示对准十字
