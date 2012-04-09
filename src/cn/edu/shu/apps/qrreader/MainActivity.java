@@ -97,6 +97,8 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         switch (message.what) {
             case R.id.success:
                 logD("Get success message");
+
+                // FIXME:..
                 Intent i = new Intent(this, OperatingActivity.class);
                 Bundle b = new Bundle();
                 b.putParcelable("result_bitmap", (Bitmap)message.obj);

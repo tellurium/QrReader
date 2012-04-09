@@ -14,6 +14,7 @@ public class OperatingActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // FIXME:....
         /* Intent i = getIntent(); */
         /* Bundle b = i.getExtras(); */
         /* mBitmap = (Bitmap) b.getParcelable("result_bitmap"); */
