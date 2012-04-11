@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,11 +22,17 @@ import cn.edu.shu.apps.qrreader.camera.CameraHandler;
 
 public class MainActivity extends BaseActivity implements CameraHandler.Callback, 
        SurfaceHolder.Callback, Camera.PreviewCallback, Handler.Callback {
+    public static final String RESULT_BITMAP_URI_KEY= "result_bitmap_uri";
+    public static final String RESULT_STRING_KEY = "result_string";
+
     private SurfaceView mSurfaceView;
     private CameraHandler mCameraHandler;
     private Handler mHandler;
 
     private String mResult;
+    private Uri mUri;
+    private boolean isSuccessed = false;
+
     /**
      * Decode runnable
      */
@@ -65,6 +72,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         if (mCameraHandler.safeCameraOpen()) {
             logD("inside onResume...");
             mCameraHandler.startCamera();
+            isSuccessed = false;
         }
         if (mCameraHandler.isPreviewing()) {
             logD("start preview...");
@@ -92,18 +100,20 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     /**
      * Handler Callback
      */
+    @Override
     public boolean handleMessage(Message message) {
         logD("Handling message");
         switch (message.what) {
             case R.id.success:
+                if (isSuccessed) return true;
+                isSuccessed = true;
+                
                 logD("Get success message");
 
-                // FIXME:..
+                stopDecodePreview();
                 Intent i = new Intent(this, OperatingActivity.class);
-                Bundle b = new Bundle();
-                b.putParcelable("result_bitmap", (Bitmap)message.obj);
-                b.putString("result_string", mResult);
-                i.putExtras(b);
+                i.putExtra(RESULT_BITMAP_URI_KEY, mUri);
+                i.putExtra(RESULT_STRING_KEY, mResult);
                 startActivity(i);
                 break;
             default:
@@ -150,11 +160,13 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     public void onPreviewFrame(byte[] data, Camera camera) {
         logD("-----onPreviewFrame-----");
 
-        Bitmap bitmap = null;
-        String result = Utils.decodePreviewData(data, bitmap);
-        if (result == null) return ;
-        mResult = result;
-        Message message = Message.obtain(mHandler, R.id.success, bitmap);
+        Utils.ResultSet resultSet = Utils.decodePreviewData(data, this);
+        if (resultSet == null) return ;
+
+        mResult = resultSet.getResultStr();
+        mUri = resultSet.getResultUri();
+
+        Message message = Message.obtain(mHandler, R.id.success, null);
         mHandler.sendMessage(message);
     }
 
