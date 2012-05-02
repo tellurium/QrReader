@@ -1,5 +1,13 @@
 package cn.edu.shu.apps.qrreader;
 
+/**
+ * 控制主界面的Activity,负责:
+ * 1.摄像头管理
+ * 2.对解析图片线程的管理(启动,关闭)
+ * 3.摄像头回调函数的处理
+ * 4.SurfaceView回调处理 
+ */
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -25,8 +33,11 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     public static final String RESULT_BITMAP_URI_KEY= "result_bitmap_uri";
     public static final String RESULT_STRING_KEY = "result_string";
 
+    // 专门用于显示摄像头取景的视图类
     private SurfaceView mSurfaceView;
+    // 摄像头管理类
     private CameraHandler mCameraHandler;
+    // 线程管理类
     private Handler mHandler;
 
     private String mResult;
@@ -35,6 +46,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
 
     /**
      * Decode runnable
+     * 主要的解析线程
      */
     private Runnable mRunnable = new Runnable () {
         @Override
@@ -47,6 +59,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     
     /**
      * Activity LifeCycle Callback
+     * 生命周期回调
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {

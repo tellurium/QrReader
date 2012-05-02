@@ -24,6 +24,7 @@ public class CameraHandler {
         mCallback = callback;
     }
 
+    // 通知摄像头进行一次取景
     public void callPreviewFrame(Camera.PreviewCallback previewCallback) {
         if (isPreviewing) mCamera.setOneShotPreviewCallback(previewCallback);
     }
