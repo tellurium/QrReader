@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         public void run() {
             logD("inside the runnable....");
             mCameraHandler.callPreviewFrame(MainActivity.this);
-            mHandler.postDelayed(this, 500);
+            mHandler.postDelayed(this, 100);
         }
     };
     
