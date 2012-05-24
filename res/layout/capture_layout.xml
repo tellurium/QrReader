@@ -8,29 +8,66 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         />
+
+    <!-- Main frame ui -->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="center"
+        android:orientation="vertical"
         >
-        <View
-            android:id="@+id/test_view_horizontal"
-            android:layout_width="20dp"
-            android:layout_height="2dp"
-            android:background="@drawable/red_vertical_line"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        >
-        <View
-            android:id="@+id/test_view_horizontal"
-            android:layout_width="2dp"
-            android:layout_height="20dp"
-            android:background="@drawable/red_horizontal_line"
-            />
+        <!-- Frame area -->
+        <LinearLayout
+            android:id="@+id/frame_view"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/frame_area"
+                />
+        </LinearLayout>
+
+        <!-- Bottom bar -->
+        <LinearLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:background="#88000000"
+            >
+            <View 
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#FF000000"
+                />
+            <View 
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#55FFFFFF"
+                />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+                <Button
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/back_selector"
+                    />
+                <Button
+                    android:id="@+id/start_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/start_selector"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
-

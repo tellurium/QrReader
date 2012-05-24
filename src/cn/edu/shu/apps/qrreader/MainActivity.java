@@ -20,8 +20,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -29,12 +31,10 @@ import cn.edu.shu.apps.qrreader.base.BaseActivity;
 import cn.edu.shu.apps.qrreader.camera.CameraHandler;
 
 public class MainActivity extends BaseActivity implements CameraHandler.Callback, 
-       SurfaceHolder.Callback, Camera.PreviewCallback, Handler.Callback {
+       SurfaceHolder.Callback, Camera.PreviewCallback, Handler.Callback, View.OnClickListener {
     public static final String RESULT_BITMAP_URI_KEY= "result_bitmap_uri";
     public static final String RESULT_STRING_KEY = "result_string";
 
-    // 专门用于显示摄像头取景的视图类
-    private SurfaceView mSurfaceView;
     // 摄像头管理类
     private CameraHandler mCameraHandler;
     // 线程管理类
@@ -43,6 +43,12 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     private String mResult;
     private Uri mUri;
     private boolean isSuccessed = false;
+
+    // 视图元素
+    private Button startButton;
+    private Button backButton;
+    // 专门用于显示摄像头取景的视图类
+    private SurfaceView mSurfaceView;
 
     /**
      * Decode runnable
@@ -53,7 +59,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         public void run() {
             logD("inside the runnable....");
             mCameraHandler.callPreviewFrame(MainActivity.this);
-            mHandler.postDelayed(this, 100);
+            mHandler.postDelayed(this, 300);
         }
     };
     
@@ -72,6 +78,11 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         setContentView(R.layout.capture_layout);
         
         mSurfaceView = (SurfaceView) findViewById(R.id.main_surface_view);
+        startButton = (Button) findViewById(R.id.start_button);
+        startButton.setOnClickListener(this);
+        backButton = (Button) findViewById(R.id.back_button);
+        backButton.setOnClickListener(this);
+
 
         mCameraHandler = new CameraHandler(this);
         mHandler = new Handler(this);
@@ -86,10 +97,6 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
             logD("inside onResume...");
             mCameraHandler.startCamera();
             isSuccessed = false;
-        }
-        if (mCameraHandler.isPreviewing()) {
-            logD("start preview...");
-            startDecodePreview();
         }
     }
 
@@ -108,6 +115,24 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
         logD("inside configchanged");
         logD("new Configuration is " + newConfig.toString());
         return ;
+    }
+
+    /**
+     * View OnClick Event
+     */
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.back_button:
+                this.finish();
+                break;
+            case R.id.start_button:
+                if (mCameraHandler.isPreviewing()) {
+                    logD("start preview...");
+                    startDecodePreview();
+                }
+                break;
+        }
     }
 
     /**
