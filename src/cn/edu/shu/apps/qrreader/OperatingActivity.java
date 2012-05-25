@@ -18,18 +18,20 @@ public class OperatingActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent i = getIntent();
-        mUri = (Uri) i.getParcelableExtra(MainActivity.RESULT_BITMAP_URI_KEY);
+        /* Intent i = getIntent(); */
+        /* mUri = (Uri) i.getParcelableExtra(MainActivity.RESULT_BITMAP_URI_KEY); */
 
-        mResult = i.getStringExtra(MainActivity.RESULT_STRING_KEY);
+        /* mResult = i.getStringExtra(MainActivity.RESULT_STRING_KEY); */
 
-        setContentView(R.layout.operating_layout);        
+        /* setContentView(R.layout.operating_layout);         */
 
-        ImageView imageView = (ImageView) findViewById(R.id.result_image);
-        TextView textView = (TextView) findViewById(R.id.result_string);
+        /* ImageView imageView = (ImageView) findViewById(R.id.result_image); */
+        /* TextView textView = (TextView) findViewById(R.id.result_string); */
 
-        textView.setText(mResult);
-        mBitmap = Utils.getBitmapFromUri(mUri, this);
-        imageView.setImageBitmap(mBitmap);
+        /* textView.setText(mResult); */
+        /* mBitmap = Utils.getBitmapFromUri(mUri, this); */
+        /* imageView.setImageBitmap(mBitmap); */
+
+        setContentView(R.layout.operating_layout);    
     }
 }
