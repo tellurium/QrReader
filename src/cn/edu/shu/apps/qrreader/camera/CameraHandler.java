@@ -29,6 +29,27 @@ public class CameraHandler {
         if (isPreviewing) mCamera.setOneShotPreviewCallback(previewCallback);
     }
 
+    // 通知摄像头自动对焦并取景
+    public void callAutoFocusAndTakePicture(final Camera.ShutterCallback shutter, 
+            final Camera.PictureCallback raw, final Camera.PictureCallback jpeg) {
+        if (mCamera != null || isPreviewing) {
+            mCamera.autoFocus(new Camera.AutoFocusCallback() {
+                Camera.ShutterCallback shutterCallback = new Camera.ShutterCallback() {
+                    @Override
+                    public void onShutter() {
+                        // do nothing
+                    }
+                };
+                @Override
+                public void onAutoFocus(boolean success, Camera camera) {
+                    if (success) {
+                        mCamera.takePicture(shutterCallback, raw, jpeg);          
+                    }
+                }
+            });
+        }
+    }
+
     public void startCamera() {
         if (mCamera != null) {
             mCallback.requestPreviewLayout();

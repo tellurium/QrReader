@@ -4,17 +4,89 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/operating_test"
+    android:background="@drawable/operating_bg"
     >
-    <!-- <TextView -->
-    <!--     android:id="@+id/result_string" -->
-    <!--     android:layout_width="wrap_content" -->
-    <!--     android:layout_height="wrap_content" -->
-    <!--     android:text="text" -->
-    <!--     /> -->
-    <!-- <ImageView -->
-    <!--     android:id="@+id/result_image" -->
-    <!--     android:layout_width="wrap_content" -->
-    <!--     android:layout_height="wrap_content" -->
-    <!--     /> -->
+
+    <!-- content area -->
+    <LinearLayout
+        android:id="@+id/content_view"
+        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/result_image"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_weight="3"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/result_string"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="text"
+            />
+    </LinearLayout>
+
+    <!-- Bottom bar -->
+    <LinearLayout
+        android:id="@+id/operate_bottom_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        >
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@drawable/operating_divider"
+            />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            >
+            <Button
+                android:id="@+id/operate_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                android:background="@color/button_selector"
+                android:padding="5dp"
+                android:text="返回"
+                />
+            <Button
+                android:id="@+id/upload_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:background="@color/button_selector"
+                android:padding="5dp"
+                android:text="上传"
+                />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/operate_back_button"
+                android:layout_toLeftOf="@id/upload_button"
+                android:gravity="bottom|center"
+                android:textSize="10sp"
+                android:text="© Copyright 2012 Shanghai University. All Rights Reserved."
+                />
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

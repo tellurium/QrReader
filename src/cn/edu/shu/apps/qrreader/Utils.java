@@ -45,6 +45,39 @@ public class Utils {
         return null;
     }
 
+    public static ResultSet decodePictureData(byte[] data, Context context) {
+        try {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            android.util.Log.d("**********Utils***********", 
+                    "data length is " + data.length + " **************************");
+            LuminanceSource source = new RGBLuminanceSource(bitmap);
+            android.util.Log.d("**********Utils***********", 
+                    "1 **************************");
+            BinaryBitmap bb = new BinaryBitmap(new HybridBinarizer(source));
+            android.util.Log.d("**********Utils***********", 
+                    "2 **************************");
+
+            Reader reader = new MultiFormatOneDAndQrCodeReader();
+            android.util.Log.d("**********Utils***********", 
+                    "3 **************************");
+            Result result = reader.decode(bb);
+            android.util.Log.d("**********Utils***********", 
+                    "4 **************************");
+            String resultStr = result.getText();
+            android.util.Log.d("**********Utils***********", 
+                    "result str  is " + resultStr + " **************************");
+            /* if (resultStr != null) { */
+                Uri uri = saveBitmapInTmpDir(bitmap, context);
+                return new ResultSet(resultStr, uri);
+            /* } else { */
+            /*     return null; */
+            /* } */
+        } catch(Exception e) {
+            // .....
+        }
+        return null;
+    }
+
     public static class ResultSet {
         private String resultStr;
         private Uri uri;

@@ -31,9 +31,12 @@ import cn.edu.shu.apps.qrreader.base.BaseActivity;
 import cn.edu.shu.apps.qrreader.camera.CameraHandler;
 
 public class MainActivity extends BaseActivity implements CameraHandler.Callback, 
-       SurfaceHolder.Callback, Camera.PreviewCallback, Handler.Callback, View.OnClickListener {
+       SurfaceHolder.Callback, Camera.PreviewCallback, Camera.PictureCallback, Handler.Callback, View.OnClickListener {
     public static final String RESULT_BITMAP_URI_KEY= "result_bitmap_uri";
     public static final String RESULT_STRING_KEY = "result_string";
+
+    public static final int PREVIEW_MODE = 1;
+    public static final int PICTURE_MODE = 2;
 
     // 摄像头管理类
     private CameraHandler mCameraHandler;
@@ -61,8 +64,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
             mCameraHandler.callPreviewFrame(MainActivity.this);
             mHandler.postDelayed(this, 300);
         }
-    };
-    
+    }; 
     /**
      * Activity LifeCycle Callback
      * 生命周期回调
@@ -86,7 +88,6 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
 
         mCameraHandler = new CameraHandler(this);
         mHandler = new Handler(this);
-
         logD("onCreate ...");
     }
 
@@ -129,7 +130,8 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
             case R.id.start_button:
                 if (mCameraHandler.isPreviewing()) {
                     logD("start preview...");
-                    startDecodePreview();
+                    startDecode(PICTURE_MODE);
+                    // startDecode(PREVIEW_MODE);
                 }
                 break;
         }
@@ -196,7 +198,7 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
      */
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
-        logD("-----onPreviewFrame-----");
+        logD("----- onPreviewFrame -----");
 
         Utils.ResultSet resultSet = Utils.decodePreviewData(data, this);
         if (resultSet == null) return ;
@@ -206,6 +208,29 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
 
         Message message = Message.obtain(mHandler, R.id.success, null);
         mHandler.sendMessage(message);
+    }
+
+    /**
+     * Camera PictureCallback
+     */
+    @Override
+    public void onPictureTaken(byte[] data, Camera camera) {
+        logD(" ----- on Picture Taken -----");
+        Utils.ResultSet resultSet = Utils.decodePictureData(data, this);
+        if (resultSet == null) return ;
+
+        mResult = resultSet.getResultStr();
+        mUri = resultSet.getResultUri();
+        Intent i = new Intent(this, OperatingActivity.class);
+        i.putExtra(RESULT_BITMAP_URI_KEY, mUri);
+        i.putExtra(RESULT_STRING_KEY, mResult);
+        startActivity(i);
+
+        try {
+            Thread.sleep(20);
+        } catch(Exception e) {
+            // do nothing
+        }
     }
 
     /**
@@ -233,6 +258,19 @@ public class MainActivity extends BaseActivity implements CameraHandler.Callback
     /**
      * Private methods
      */
+    private void startDecode(int mode) {
+        switch(mode) {
+            case PREVIEW_MODE:
+                logD("In preview mode");
+                startDecodePreview();
+                break;
+            case PICTURE_MODE:
+                logD("In picture mode");
+                mCameraHandler.callAutoFocusAndTakePicture(null, null, this);
+                break;
+        }
+    }
+
     private void startDecodePreview() {
         logD("start Decode preview");
         mHandler.post(mRunnable);
